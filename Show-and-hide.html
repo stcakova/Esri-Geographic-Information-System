@@ -546,8 +546,6 @@
           console.log("Layer failed to load: ", err);
         }
 // ------------------------------------------FIND TASK-------------------------------------------------
-      var loadingImg = dom.byId("loading");
-
       // Create a FindTask pointing to a map service
       var find = new FindTask({
         url: "https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_2000-2010_Population_Change/MapServer"
@@ -559,15 +557,8 @@
         searchFields: ["NAME"]
       });
 
-      // Executes on each button click
       function doFind() {
-        // Display loading gif to provide the user feedback on search progress
-        loadingImg.style.visibility = "visible";
-        // Set the search text to the value of the input box
         findParams.searchText = dom.byId("inputTxt").value;
-        // The execute() performs a LIKE SQL query based on the provided text value
-        // showResults() is called once the promise returned here resolves
-        // find.execute(params).then(showResults, rejectedPromise);
 
         find.execute(findParams)
           .then(showResults)
@@ -580,11 +571,7 @@
       function showResults(response) {
 
         var results = response.results;
-
-        // Clear the cells and rows of the table to make room for new results
         resultsTable.innerHTML = "";
-
-        // If no results are returned from the task, notify the user
         if (results.length === 0) {
           resultsTable.innerHTML = "<i>No results found</i>";
           loadingImg.style.visibility = "hidden";
@@ -716,7 +703,7 @@
       <br>
       <br> Find by County Name:
       <input type="text" id="inputTxt" size="40" value="Spokane" />
-      <input type="button" value="Find" id="findBtn" /> <img id="loading" src="ajax-loader.gif">
+      <input type="button" value="Find" id="findBtn" />
       <br>
       <br>
       <table id="tbl"></table>

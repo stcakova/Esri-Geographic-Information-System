@@ -154,10 +154,11 @@ html,
       color: white;
       z-index: 23;
       position: absolute;
-      bottom: 120px;
+      bottom: 60px;
       left: 0px;
       padding: 0px 0px 0px 10px;
       border-bottom-left-radius: 5px;
-      max-width: 350px;
-      height: 400px;
+      max-width: 370px;
+      height: 300px;
+      overflow-y: scroll;
     }
