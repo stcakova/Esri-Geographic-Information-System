@@ -138,3 +138,26 @@ html,
       border-bottom-left-radius: 5px;
       max-width: 350px;
     }
+
+
+    /*STYLES FOR FIND TASK*/
+    td {
+      padding: 4px;
+    }
+    
+    #loading {
+      visibility: hidden;
+    }
+
+    #find-field {
+      background-color: dimgray;
+      color: white;
+      z-index: 23;
+      position: absolute;
+      bottom: 120px;
+      left: 0px;
+      padding: 0px 0px 0px 10px;
+      border-bottom-left-radius: 5px;
+      max-width: 350px;
+      height: 400px;
+    }
