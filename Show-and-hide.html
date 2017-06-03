@@ -31,6 +31,11 @@
         "esri/tasks/IdentifyTask",
         "esri/tasks/support/IdentifyParameters",
         "dojo/_base/array",
+        "esri/layers/GraphicsLayer",
+        "esri/symbols/PointSymbol3D",
+        "esri/symbols/ObjectSymbol3DLayer",
+        "esri/tasks/QueryTask",
+        "esri/tasks/support/Query",
         "dojo/domReady!"
       ],
       function(
@@ -53,7 +58,12 @@
         TileLayer,
         IdentifyTask,
         IdentifyParameters,
-        arrayUtils
+        arrayUtils,
+        GraphicsLayer,
+        PointSymbol3D,
+        ObjectSymbol3DLayer,
+        QueryTask,
+        Query
       ) {
 
         /*****************************************************************
@@ -109,6 +119,9 @@
           url: "http://services.arcgisonline.com/arcgis/rest/services/World_Topo_Map/MapServer",
         });
 
+        // Create graphics layer and symbol to use for displaying the results of query    
+        var resultsLyr = new GraphicsLayer();
+        
         /*****************************************************************
          * Add the layer to a map
          *****************************************************************/
@@ -176,9 +189,6 @@
         opacity: 0.85
       });
 
-      // var map = new Map({
-      //   basemap: "osm"
-      // });
       map.add(parcelsLyr);
 
       var view = new MapView({
@@ -262,8 +272,6 @@
           dom.byId("viewDiv").style.cursor = "auto";
         }
       }
-
-
 
 //------------------------------EDIT-----------------------------------------------------------
 
@@ -540,6 +548,7 @@
 </head>
 
 <body>
+  <!-- EDIT -->
   <div id="editArea" class="editArea-container">
     <div id="addFeatureDiv">
       <h3 class="list-heading">Report Incidents</h3>
@@ -572,7 +581,35 @@
       </div>
     </div>
   </div>
+  <!-- MAIN -->
   <div id="viewDiv"></div>
+  <!-- QUERY -->
+  <div id="optionsDiv">
+    <h2>Prominent Peaks in the U.S.</h2>
+    <select id="attSelect">
+      <option value="ELEV_ft">Elevation</option>
+      <option value="PROMINENCE_ft" selected>Prominence</option>
+    </select>
+    <select id="signSelect">
+      <option value=">">is greater than</option>
+      <option value="<">is less than</option>
+      <option value="=">is equal to</option>
+    </select>
+    <select id="valSelect">
+      <option value="1000">1,000 ft</option>
+      <option value="5000">5,000 ft</option>
+      <option value="10000">10,000 ft</option>
+      <option value="15000">15,000 ft</option>
+      <option value="20000">20,000 ft</option>
+      <option value="PROMINENCE_ft">Prominence</option>
+    </select>
+    <br>
+    <br>
+    <button id="doBtn">Do Query</button>
+    <br>
+    <p><span id="printResults"></span></p>
+  </div>
+  <!-- SHOW/HIDE LAYERS -->
   <div class="footer">
     <div class="sublayers">
       <div class="sublayers-item" data-id="0">Cities</div>

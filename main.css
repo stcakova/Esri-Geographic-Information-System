@@ -37,7 +37,7 @@ html,
       color: #FFF;
       margin: 1px;
       width: 50%;
-      padding: 20px;
+      padding: 10px;
       overflow: auto;
       text-align: center;
       cursor: pointer;
@@ -115,7 +115,7 @@ html,
     }
 
 
-    /*STYLE FOR IDENTIFY*/
+    /*STYLE FOR IDENTIFY TASK*/
     .esri-popup .esri-popup-header .esri-title {
       font-size: 18px;
       font-weight: bolder;
@@ -123,4 +123,18 @@ html,
     
     .esri-popup .esri-popup-body .esri-popup-content {
       font-size: 14px;
+    }
+
+    /*STYLE FOR QUERY TASK*/
+
+     #optionsDiv {
+      background-color: dimgray;
+      color: white;
+      z-index: 23;
+      position: absolute;
+      bottom: 60px;
+      right: 0px;
+      padding: 0px 0px 0px 10px;
+      border-bottom-left-radius: 5px;
+      max-width: 350px;
     }
